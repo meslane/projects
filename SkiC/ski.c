@@ -76,14 +76,33 @@ int main(int argc, char *argv[]) {
         field[i][16] = 0; /* null terminate */
     }
     
-    int d = 0;
-    while (d == 0) {
+    char d; /* difficulty */
+    switch(atoi(argv[1])) {
+        default:
+            d = 15;
+            break;
+        case 1:
+            d = 20;
+            break;
+        case 2:
+            d = 15;
+            break;
+        case 3:
+            d = 10;
+            break;
+        case 4:
+            d = 5;
+            break;
+    }
+    
+    int s = 0;
+    while (s == 0) {
         int y;
         
-        fill_buffer(atoi(argv[1]));
+        fill_buffer(d);
         update_field();
         test_motion();
-        d = test_collision();
+        s = test_collision();
         
         score++;
         
